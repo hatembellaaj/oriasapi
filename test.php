@@ -19,7 +19,7 @@ try {
     $responce_param = $client->intermediarySearch($request_param);
     //echo $siren . ' siren => ' . $responce_param->intermediaries . ' informationBase';
 
-    var_dump($responce_param->intermediaries->intermediary[0]) ;
+    var_dump($responce_param->intermediaries->intermediary[0]->informationBase->siren) ;
 /*
    $results = json_decode($responce_param, true); 
    $results = (array) $results;
