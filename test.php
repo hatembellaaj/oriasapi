@@ -19,7 +19,12 @@ try {
     $responce_param = $client->intermediarySearch($request_param);
    // echo $siren . ' siren => ' . $responce_param->intermediarySearchResponse->intermediaries->intermediary[0]->informationBase->siren . ' informationBase';
 
-    var_dump($responce_param) ;
+   // var_dump($responce_param) ;
+
+   $results = json_decode($responce_param, true); 
+   $results = (array) $results;
+   var_dump($results);
+
         /*
         
 // output headers so that the file is downloaded rather than displayed
