@@ -17,10 +17,10 @@ $request_param = array(
 
 try {
     $responce_param = $client->intermediarySearch($request_param);
-   // echo $siren . ' siren => ' . $responce_param->intermediarySearchResponse->intermediaries->intermediary[0]->informationBase->siren . ' informationBase';
+    //echo $siren . ' siren => ' . $responce_param->intermediaries . ' informationBase';
 
-   // var_dump($responce_param) ;
-
+    var_dump($responce_param->intermediaries) ;
+/*
    $results = json_decode($responce_param, true); 
    $results = (array) $results;
    var_dump($results);
