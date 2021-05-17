@@ -48,17 +48,17 @@ foreach ($res as $r)
     //var_dump($r->registrations->registration);
     //die();
 
-    $categories = "";
+ /*   $categories = "";
     $j=0;
     foreach ($r->registrations->registration as $reg)
     {
         $categories = $reg[$j]->categoryName . " ";
         $j++;
     }
-
+*/
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
-$categories ];
+$r->registrations->registration ];
 //, $r->registrations->registration     [0]->categoryName.strcmp("AGA") ? 1 : 0 
 $i++;
 }
