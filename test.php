@@ -28,12 +28,19 @@ $file = fopen('php://output', 'w');
  
 // send the column headers
 fputcsv($file, array('sirene', 'denomination', 'categoryName'));
- 
+
+$res = $responce_param->intermediaries->intermediary ;
+$data = array();
 // Sample data. This can be fetched from mysql too
-$data = array($responce_param->intermediaries->intermediary[0]->informationBase->siren,
-$responce_param->intermediaries->intermediary[0]->informationBase->denomination, 
-$responce_param->intermediaries->intermediary[0]->registrations->registration[0]->categoryName);
- 
+$i=0;
+foreach ($res as $r)
+{
+
+$data [$i] = [$r->informationBase->siren,
+$r->informationBase->denomination, 
+$r->registrations->registration[0]->categoryName];
+$i++;
+}
 // output each row of the data
 foreach ($data as $row)
 {
