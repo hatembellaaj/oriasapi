@@ -6,6 +6,8 @@ $user= 'WUU7EOCWD0GX9GHZX6Q5';
 $intermediaries=[];
 $intermediaries[0]= array('siren' => '332116466');
 $intermediaries[1]= array('siren' => '308316819');
+$intermediaries[1]= array('siren' => '393497987');
+$intermediaries[1]= array('siren' => '449068410');
 // web service input param
 $request_param = array(
     'user' => $user,
@@ -27,7 +29,7 @@ header('Expires: 0');
 $file = fopen('php://output', 'w');
  
 // send the column headers
-fputcsv($file, array('sirene', 'denomination', 'categoryName'));
+fputcsv($file, array('sirene', 'denomination', 'categoryName','AGA'));
 
 $res = $responce_param->intermediaries->intermediary ;
 $data = array();
@@ -38,7 +40,8 @@ foreach ($res as $r)
 
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
-$r->registrations->registration[0]->categoryName];
+$r->registrations->registration[0]->categoryName, $r->registrations->registration[0]->categoryName == "AGA" ? 1 : 0 ];
+
 $i++;
 }
 // output each row of the data
