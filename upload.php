@@ -1,6 +1,4 @@
 <?php
-
-
 if ( isset($_POST["submit"]) ) {
 
     if ( isset($_FILES["file"])) {
@@ -45,10 +43,7 @@ if ( isset($_POST["submit"]) ) {
       //CSV: one line is one record and the cells/fields are seperated by ";"
       //so $dsatz is an two dimensional array saving the records like this: $dsatz[number of record][number of cell]
   while ( $line[$i] = fgets ($file, 4096) ) {
-
-      
     $intermediaries[$i] = $line[$i];
-
       $i++;
   }
 
@@ -124,12 +119,16 @@ if (gettype($r->registrations->registration)=="array")
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
 $categories ];
+
+
 }
 else
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
 $r->registrations->registration->categoryName ];
 //, $r->registrations->registration     [0]->categoryName.strcmp("AGA") ? 1 : 0 
+
+var_dump($i);
 $i++;
 }
 // output each row of the data
