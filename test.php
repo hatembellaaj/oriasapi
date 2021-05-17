@@ -19,7 +19,7 @@ try {
    // var_dump($responce_param->intermediaries->intermediary[0]->informationBase->siren) ;
 // output headers so that the file is downloaded rather than displayed
 
-var_dump($res);
+var_dump($responce_param);
 die();
 
 header('Content-type: text/csv');
