@@ -31,6 +31,11 @@ $file = fopen('php://output', 'w');
 // send the column headers
 fputcsv($file, array('sirene', 'denomination', 'categoryName'));
 
+
+var_dump($res);
+die();
+
+
 $res = $responce_param->intermediaries->intermediary ;
 $data = array();
 // Sample data. This can be fetched from mysql too
