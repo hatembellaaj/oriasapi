@@ -40,7 +40,7 @@ foreach ($res as $r)
 
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
-$r->registrations->registration[0]->categoryName, $r->registrations->registration[0]->categoryName == "AGA" ? 1 : 0 ];
+$r->registrations->registration[0]->categoryName, ($r->registrations->registration[0]->categoryName == "AGA") ? 1 : 0 ];
 
 $i++;
 }
