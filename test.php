@@ -18,6 +18,10 @@ try {
     //echo $siren . ' siren => ' . $responce_param->intermediaries . ' informationBase';
    // var_dump($responce_param->intermediaries->intermediary[0]->informationBase->siren) ;
 // output headers so that the file is downloaded rather than displayed
+
+var_dump($res);
+die();
+
 header('Content-type: text/csv');
 header('Content-Disposition: attachment; filename="demo.csv"');
  
@@ -32,8 +36,7 @@ $file = fopen('php://output', 'w');
 fputcsv($file, array('sirene', 'denomination', 'categoryName'));
 
 
-var_dump($res);
-die();
+
 
 
 $res = $responce_param->intermediaries->intermediary ;
