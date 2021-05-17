@@ -50,7 +50,7 @@ foreach ($res as $r)
     $j=0;
     foreach ($r->registrations->registration as $reg)
     {
-        $categories = $reg[j]->categoryName . " ";
+        $categories = $reg[$j]->categoryName . " ";
         $j++;
     }
 
