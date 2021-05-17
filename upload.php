@@ -48,7 +48,8 @@ if ( isset($_POST["submit"]) ) {
   }
 }
 
-
+var_dump($intermediaries);
+die();
 
 
 $wsdl   = 'https://ws.orias.fr/service?wsdl';
