@@ -48,7 +48,7 @@ if ( isset($_POST["submit"]) ) {
   }
 }
 
-var_dump($intermediaries);
+
 
 
 $wsdl   = 'https://ws.orias.fr/service?wsdl';
@@ -65,7 +65,7 @@ $request_param = array(
     'intermediaries' => $intermediaries
 );
 
-var_dump("TEST 1") ;
+
 try {
     $responce_param = $client->intermediarySearch($request_param);
     //echo $siren . ' siren => ' . $responce_param->intermediaries . ' informationBase';
@@ -74,7 +74,7 @@ try {
 
 //var_dump($responce_param);
 //die();
-var_dump("TEST 1-2") ;
+
 
 header('Content-type: text/csv');
 header('Content-Disposition: attachment; filename="demo.csv"');
@@ -95,7 +95,7 @@ $data = array();
 // Sample data. This can be fetched from mysql too
 $i=0;
 
-var_dump("TEST 2") ;
+
 foreach ($res as $r)
 {
     //var_dump($r->registrations->registration);
@@ -104,7 +104,7 @@ foreach ($res as $r)
 if (gettype($r->registrations->registration)=="array")
 {
 
-  var_dump("TEST 3") ;
+ 
     $categories = "";
     foreach ($r->registrations->registration as $reg)
         $categories = $categories . " " . $reg->categoryName ;
@@ -120,9 +120,9 @@ $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
 $r->registrations->registration->categoryName ];
 //, $r->registrations->registration     [0]->categoryName.strcmp("AGA") ? 1 : 0 
-var_dump("TEST 4") ;
+
 }
-var_dump($i);
+
 $i++;
 }
 // output each row of the data
