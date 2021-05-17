@@ -45,6 +45,8 @@ $data = array();
 $i=0;
 foreach ($res as $r)
 {
+    var_dump($r->registrations->registration);
+    die();
 
     $categories = "";
     $j=0;
