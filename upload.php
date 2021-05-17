@@ -23,7 +23,7 @@ if ( isset($_POST["submit"]) ) {
               }
               else {
                      //Store file in directory "upload" with the name of "uploaded_file.txt"
-             $storagename = "uploaded_file.txt";
+             $storagename = "uploaded_file.csv";
              move_uploaded_file($_FILES["file"]["tmp_name"], "./upload/" . $storagename);
              echo "Stored in: " . "upload/" . $_FILES["file"]["name"] . "<br />";
              }
