@@ -19,8 +19,8 @@ try {
    // var_dump($responce_param->intermediaries->intermediary[0]->informationBase->siren) ;
 // output headers so that the file is downloaded rather than displayed
 
-var_dump($responce_param);
-die();
+//var_dump($responce_param);
+//die();
 
 header('Content-type: text/csv');
 header('Content-Disposition: attachment; filename="demo.csv"');
@@ -46,10 +46,18 @@ $i=0;
 foreach ($res as $r)
 {
 
+    $categories = "";
+    $j=0;
+    foreach ($r->registrations->registration as $reg)
+    {
+        $categories = $reg[j]->categoryName . " ";
+        $j++;
+    }
+
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
-$r->registrations->registration[0]->categoryName ];
-//, $r->registrations->registration[0]->categoryName.strcmp("AGA") ? 1 : 0
+$categories ];
+//, $r->registrations->registration     [0]->categoryName.strcmp("AGA") ? 1 : 0 
 $i++;
 }
 // output each row of the data
