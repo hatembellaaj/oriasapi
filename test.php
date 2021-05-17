@@ -29,7 +29,7 @@ header('Expires: 0');
 $file = fopen('php://output', 'w');
  
 // send the column headers
-fputcsv($file, array('sirene', 'denomination', 'categoryName','AGA'));
+fputcsv($file, array('sirene', 'denomination', 'categoryName'));
 
 $res = $responce_param->intermediaries->intermediary ;
 $data = array();
@@ -40,8 +40,8 @@ foreach ($res as $r)
 
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
-$r->registrations->registration[0]->categoryName, $r->registrations->registration[0]->categoryName.strcmp("AGA") ? 1 : 0 ];
-
+$r->registrations->registration[0]->categoryName ];
+//, $r->registrations->registration[0]->categoryName.strcmp("AGA") ? 1 : 0
 $i++;
 }
 // output each row of the data
