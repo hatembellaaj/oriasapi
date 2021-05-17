@@ -33,20 +33,12 @@ if ( isset($_POST["submit"]) ) {
       }
  }
 
-
+ $intermediaries=[];
 
  if ( isset($storagename) && $file = fopen( "upload/" . $storagename , "r" ) ) {
 
   echo "File opened.<br />";
-
-  $firstline = fgets ($file, 4096 );
-      //Gets the number of fields, in CSV-files the names of the fields are mostly given in the first line
-  $num = strlen($firstline) - strlen(str_replace(";", "", $firstline));
-
-      //save the different fields of the firstline in an array called fields
   $fields = array();
-  $fields = explode( ";", $firstline, ($num+1) );
-
   $line = array();
   $i = 0;
 
@@ -54,33 +46,16 @@ if ( isset($_POST["submit"]) ) {
       //so $dsatz is an two dimensional array saving the records like this: $dsatz[number of record][number of cell]
   while ( $line[$i] = fgets ($file, 4096) ) {
 
-      $dsatz[$i] = array();
-      $dsatz[$i] = explode( ";", $line[$i], ($num+1) );
+      
+    $intermediaries[$i] = $line[$i];
 
       $i++;
   }
 
-      echo "<table>";
-      echo "<tr>";
-  for ( $k = 0; $k != ($num+1); $k++ ) {
-      echo "<td>" . $fields[$k] . "</td>";
-  }
-      echo "</tr>";
 
-  foreach ($dsatz as $key => $number) {
-              //new table row for every record
-      echo "<tr>";
-      foreach ($number as $k => $content) {
-                      //new table cell for every field of the record
-          echo "<td>" . $content . "</td>";
-      }
-  }
-
-  echo "</table>";
 }
 
 
-$intermediaries = $fields ;
 
 var_dump($intermediaries);
 die();
