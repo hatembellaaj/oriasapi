@@ -56,7 +56,7 @@ if (gettype($r->registrations->registration)=="array")
 
     $categories = "";
     foreach ($r->registrations->registration as $reg)
-        $categories = $reg->categoryName . " ";
+        $categories = $categories . " " . $reg->categoryName ;
 
 
 
