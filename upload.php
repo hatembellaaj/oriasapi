@@ -87,7 +87,7 @@ header('Expires: 0');
 $file = fopen('php://output', 'w');
  
 // send the column headers
-fputcsv($file, array('sirene', 'denomination', 'categoryName'));
+fputcsv($file, array('sirene', 'denomination', 'categoryName', 'AGA'));
 
 
 $res = $responce_param->intermediaries->intermediary ;
@@ -111,14 +111,17 @@ if (gettype($r->registrations->registration)=="array")
 
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
-$categories ];
+$categories,
+str_contains($categories,'AGA')
+];
 
 }
 else
 {
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
-$r->registrations->registration->categoryName ];
+$r->registrations->registration->categoryName,
+str_contains($categories,'AGA') ];
 //, $r->registrations->registration     [0]->categoryName.strcmp("AGA") ? 1 : 0 
 
 }
