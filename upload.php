@@ -82,6 +82,8 @@ if ( isset($_POST["submit"]) ) {
 
 $intermediaries = $fields ;
 
+var_dump($intermediaries);
+die();
 
 $wsdl   = 'https://ws.orias.fr/service?wsdl';
 $client = new SoapClient($wsdl, array('trace'=>1));  // The trace param will show you errors
