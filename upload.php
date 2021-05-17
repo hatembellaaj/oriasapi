@@ -46,11 +46,7 @@ if ( isset($_POST["submit"]) ) {
     $intermediaries[$i] = $line[$i];
       $i++;
   }
-
-
 }
-
-
 
 var_dump($intermediaries);
 
@@ -91,9 +87,6 @@ $file = fopen('php://output', 'w');
 fputcsv($file, array('sirene', 'denomination', 'categoryName'));
 
 
-
-
-
 $res = $responce_param->intermediaries->intermediary ;
 $data = array();
 // Sample data. This can be fetched from mysql too
@@ -112,14 +105,9 @@ if (gettype($r->registrations->registration)=="array")
     foreach ($r->registrations->registration as $reg)
         $categories = $categories . " " . $reg->categoryName ;
 
-
-
-
-
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
 $categories ];
-
 
 }
 else
