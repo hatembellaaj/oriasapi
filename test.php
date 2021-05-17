@@ -1,28 +1,19 @@
 <?php
-
 $wsdl   = 'https://ws.orias.fr/service?wsdl';
 $client = new SoapClient($wsdl, array('trace'=>1));  // The trace param will show you errors
-
-
 $user= 'WUU7EOCWD0GX9GHZX6Q5';
 $intermediaries=[];
 $intermediaries[0]= array('siren' => '332116466');
 $intermediaries[1]= array('siren' => '308316819');
-
 // web service input param
 $request_param = array(
     'user' => $user,
     'intermediaries' => $intermediaries
 );
-
 try {
     $responce_param = $client->intermediarySearch($request_param);
     //echo $siren . ' siren => ' . $responce_param->intermediaries . ' informationBase';
-
    // var_dump($responce_param->intermediaries->intermediary[0]->informationBase->siren) ;
-
-
-        
 // output headers so that the file is downloaded rather than displayed
 header('Content-type: text/csv');
 header('Content-Disposition: attachment; filename="demo.csv"');
@@ -39,11 +30,17 @@ fputcsv($file, array('sirene', 'denomination', 'categoryName'));
  
 // Sample data. This can be fetched from mysql too
 $data = array(
-array($responce_param->intermediaries->intermediary[0]->informationBase->siren,
-$responce_param->intermediaries->intermediary[0]->informationBase->denomination, 
-$responce_param->intermediaries->intermediary[0]->registrations->registration[0]->categoryName)
+
+    foreach ($responce_param->intermediaries->intermediary as $valeur) {
+       
+    
+array($valeur[0]->informationBase->siren,
+$valeur[0]->informationBase->denomination, 
+$valeur[0]->registrations->registration[0]->categoryName)
+
+}
 );
- 
+
 // output each row of the data
 foreach ($data as $row)
 {
