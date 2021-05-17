@@ -43,7 +43,7 @@ if ( isset($_POST["submit"]) ) {
       //CSV: one line is one record and the cells/fields are seperated by ";"
       //so $dsatz is an two dimensional array saving the records like this: $dsatz[number of record][number of cell]
   while ( $line[$i] = fgets ($file, 4096) ) {
-    $intermediaries[$i] = array('siren' => str($line[$i])); 
+    $intermediaries[$i] = array('siren' => str_replace(' ', '', $line[$i])); 
       $i++;
   }
 }
