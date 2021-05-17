@@ -64,6 +64,8 @@ $request_param = array(
     'user' => $user,
     'intermediaries' => $intermediaries
 );
+
+var_dump("TEST 1") ;
 try {
     $responce_param = $client->intermediarySearch($request_param);
     //echo $siren . ' siren => ' . $responce_param->intermediaries . ' informationBase';
