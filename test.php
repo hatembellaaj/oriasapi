@@ -48,20 +48,27 @@ foreach ($res as $r)
     //var_dump($r->registrations->registration);
     //die();
 
- /*   $categories = "";
+ /*  
+*/
+
+if (gettype($r->registrations->registration)=="array")
+{
+
+    $categories = "";
     $j=0;
     foreach ($r->registrations->registration as $reg)
     {
         $categories = $reg[$j]->categoryName . " ";
         $j++;
     }
-*/
 
-if (gettype($r->registrations->registration)=="array")
+
+
+
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
-$r->registrations->registration[0]->categoryName ];
-
+$categories ];
+}
 else
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
