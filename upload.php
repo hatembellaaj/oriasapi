@@ -1,22 +1,38 @@
 <?php
 
 
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-  if($check !== false) {
-    echo "File is an image - " . $check["mime"] . ".";
-    $uploadOk = 1;
-  } else {
-    echo "File is not an image.";
-    $uploadOk = 0;
-  }
-}
+if ( isset($_POST["submit"]) ) {
 
+    if ( isset($_FILES["file"])) {
+ 
+             //if there was an error uploading the file
+         if ($_FILES["file"]["error"] > 0) {
+             echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
+ 
+         }
+         else {
+                  //Print file details
+              echo "Upload: " . $_FILES["file"]["name"] . "<br />";
+              echo "Type: " . $_FILES["file"]["type"] . "<br />";
+              echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
+              echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
+ 
+                  //if file already exists
+              if (file_exists("./upload/" . $_FILES["file"]["name"])) {
+             echo $_FILES["file"]["name"] . " already exists. ";
+              }
+              else {
+                     //Store file in directory "upload" with the name of "uploaded_file.txt"
+             $storagename = "uploaded_file.txt";
+             move_uploaded_file($_FILES["file"]["tmp_name"], "./upload/" . $storagename);
+             echo "Stored in: " . "upload/" . $_FILES["file"]["name"] . "<br />";
+             }
+         }
+      } else {
+              echo "No file selected <br />";
+      }
+ }
+/*
 
 
 
@@ -68,8 +84,7 @@ foreach ($res as $r)
     //var_dump($r->registrations->registration);
     //die();
 
- /*  
-*/
+
 
 if (gettype($r->registrations->registration)=="array")
 {
@@ -107,5 +122,5 @@ exit();
     echo "<h2>Exception Error</h2>";
     echo $e->getMessage();
 }
-
+*/
 ?>
