@@ -58,7 +58,7 @@ foreach ($res as $r)
 */
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
-$r->registrations->registration ];
+$r->registrations->registration[0]->categoryName ];
 //, $r->registrations->registration     [0]->categoryName.strcmp("AGA") ? 1 : 0 
 $i++;
 }
