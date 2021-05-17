@@ -32,7 +32,7 @@ if ( isset($_POST["submit"]) ) {
               echo "No file selected <br />";
       }
  }
-
+/*
 
 
 
@@ -84,8 +84,7 @@ foreach ($res as $r)
     //var_dump($r->registrations->registration);
     //die();
 
- /*  
-*/
+
 
 if (gettype($r->registrations->registration)=="array")
 {
@@ -123,5 +122,5 @@ exit();
     echo "<h2>Exception Error</h2>";
     echo $e->getMessage();
 }
-
+*/
 ?>
