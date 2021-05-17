@@ -48,9 +48,9 @@ if ( isset($_POST["submit"]) ) {
   }
 }
 
-var_dump($intermediaries);
-die();
-
+$k=0;
+while ($k< count($intermediaries)) 
+{
 
 $wsdl   = 'https://ws.orias.fr/service?wsdl';
 $client = new SoapClient($wsdl, array('trace'=>1));  // The trace param will show you errors
@@ -61,9 +61,12 @@ $intermediaries[1]= array('siren' => '308316819');
 $intermediaries[2]= array('siren' => '393497987');
 $intermediaries[3]= array('siren' => '449068410');*/
 // web service input param
+
+$end =(count($intermediaries)-$k > 100)?$k+100:count($intermediaries)-$k;
+
 $request_param = array(
     'user' => $user,
-    'intermediaries' => $intermediaries
+    'intermediaries' => array_slice($intermediaries, $k, $end)
 );
 
 
@@ -85,7 +88,7 @@ header('Pragma: no-cache');
 header('Expires: 0');
 
 // create a file pointer connected to the output stream
-$file = fopen('php://output', 'w');
+$file = fopen('php://output', 'w+');
  
 // send the column headers
 fputcsv($file, array('sirene', 'denomination', 'categoryName', 'AGA'));
@@ -129,12 +132,14 @@ strpos($categories,'AGA')?1:0 ];
 
 $i++;
 }
+
+
 // output each row of the data
 foreach ($data as $row)
 {
 fputcsv($file, $row);
 }
- 
+} 
 exit();
 
 
