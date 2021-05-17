@@ -4,9 +4,9 @@ $wsdl   = 'https://ws.orias.fr/service?wsdl';
 $client = new SoapClient($wsdl, array('trace'=>1));  // The trace param will show you errors
 $user= 'WUU7EOCWD0GX9GHZX6Q5';
 $intermediaries=[];
-//$intermediaries[0]= array('siren' => '332116466');
+$intermediaries[0]= array('siren' => '332116466');
 //$intermediaries[1]= array('siren' => '308316819');
-$intermediaries[0]= array('siren' => '393497987');
+//$intermediaries[0]= array('siren' => '393497987');
 //$intermediaries[1]= array('siren' => '449068410');
 // web service input param
 $request_param = array(
