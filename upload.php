@@ -74,6 +74,7 @@ try {
 
 //var_dump($responce_param);
 //die();
+var_dump("TEST 1-2") ;
 
 header('Content-type: text/csv');
 header('Content-Disposition: attachment; filename="demo.csv"');
@@ -99,8 +100,6 @@ foreach ($res as $r)
 {
     //var_dump($r->registrations->registration);
     //die();
-
-
 
 if (gettype($r->registrations->registration)=="array")
 {
