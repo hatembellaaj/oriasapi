@@ -5,9 +5,9 @@ $client = new SoapClient($wsdl, array('trace'=>1));  // The trace param will sho
 $user= 'WUU7EOCWD0GX9GHZX6Q5';
 $intermediaries=[];
 $intermediaries[0]= array('siren' => '332116466');
-//$intermediaries[1]= array('siren' => '308316819');
-//$intermediaries[0]= array('siren' => '393497987');
-//$intermediaries[1]= array('siren' => '449068410');
+$intermediaries[1]= array('siren' => '308316819');
+$intermediaries[2]= array('siren' => '393497987');
+$intermediaries[3]= array('siren' => '449068410');
 // web service input param
 $request_param = array(
     'user' => $user,
@@ -19,8 +19,8 @@ try {
    // var_dump($responce_param->intermediaries->intermediary[0]->informationBase->siren) ;
 // output headers so that the file is downloaded rather than displayed
 
-var_dump($responce_param);
-die();
+//var_dump($responce_param);
+//die();
 
 header('Content-type: text/csv');
 header('Content-Disposition: attachment; filename="demo.csv"');
@@ -56,9 +56,16 @@ foreach ($res as $r)
         $j++;
     }
 */
+
+if (gettype($r->registrations->registration)=="array")
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
 $r->registrations->registration[0]->categoryName ];
+
+else
+$data [$i] = [$r->informationBase->siren,
+$r->informationBase->denomination, 
+$r->registrations->registration->categoryName ];
 //, $r->registrations->registration     [0]->categoryName.strcmp("AGA") ? 1 : 0 
 $i++;
 }
