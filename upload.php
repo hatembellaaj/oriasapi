@@ -112,7 +112,7 @@ if (gettype($r->registrations->registration)=="array")
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
 $categories,
-str_contains($categories,'AGA')
+strpos(($categories,'AGA')
 ];
 
 }
@@ -121,7 +121,7 @@ else
 $data [$i] = [$r->informationBase->siren,
 $r->informationBase->denomination, 
 $r->registrations->registration->categoryName,
-str_contains($categories,'AGA') ];
+strpos(($categories,'AGA') ];
 //, $r->registrations->registration     [0]->categoryName.strcmp("AGA") ? 1 : 0 
 
 }
