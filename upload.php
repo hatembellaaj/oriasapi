@@ -94,7 +94,7 @@ while ($k< count($intermediaries))
       }
       else
       {
-        $data [$i] = [$r->informationBase->siren,
+        $data [$k] = [$r->informationBase->siren,
         $r->informationBase->denomination, 
         $r->registrations->registration->categoryName,
         strpos($categories,'AGA')?1:0 ];
