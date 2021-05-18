@@ -66,7 +66,7 @@ while ($k< count($intermediaries))
   $wsdl   = 'https://ws.orias.fr/service?wsdl';
   $client = new SoapClient($wsdl, array('trace'=>1));  // The trace param will show you errors
   $user= 'WUU7EOCWD0GX9GHZX6Q5';
-  $end =(count($intermediaries)-$k > 1000)?$k+100:count($intermediaries)-$k;
+  $end =(count($intermediaries)-$k > 1000)?$k+1000:count($intermediaries)-$k;
 
   $request_param = array(
       'user' => $user,
