@@ -112,7 +112,7 @@ while ($k< count($intermediaries))
   {
     fputcsv($file, $row);
   }
-  $k = $k+1000;
+  $k = $k+1001;
   fclose($file);
   sleep(2);
 } 
