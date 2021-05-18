@@ -12,14 +12,14 @@ if ( isset($_POST["submit"]) ) {
       echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
       echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
       //if file already exists
-      if (file_exists("./upload/" . $_FILES["file"]["name"])) {
+      if (file_exists("./" . $_FILES["file"]["name"])) {
         echo $_FILES["file"]["name"] . " already exists. ";
       }
       else {
         //Store file in directory "upload" with the name of "uploaded_file.txt"
         $storagename = "uploaded_file.csv";
-        move_uploaded_file($_FILES["file"]["tmp_name"], "./upload/" . $storagename);
-        echo "Stored in: " . "upload/" . $_FILES["file"]["name"] . "<br />";
+        move_uploaded_file($_FILES["file"]["tmp_name"], "./" . $storagename);
+        echo "Stored in: " . "./" . $_FILES["file"]["name"] . "<br />";
       }
     }
   } else {
@@ -29,7 +29,7 @@ if ( isset($_POST["submit"]) ) {
 
  //FILLING DATA TO SOAP CALL 
 $intermediaries=[];
-if ( isset($storagename) && $file = fopen( "upload/" . $storagename , "r" ) ) {
+if ( isset($storagename) && $file = fopen( "./" . $storagename , "r" ) ) {
   echo "File opened.<br />";
   $fields = array();
   $line = array();
@@ -78,6 +78,7 @@ while ($k< count($intermediaries))
     $responce_param = $client->intermediarySearch($request_param);
     $res = $responce_param->intermediaries->intermediary ;
     $data = array();
+    $j=0;
 
     foreach ($res as $r)
     {
@@ -86,7 +87,7 @@ while ($k< count($intermediaries))
         $categories = "";
         foreach ($r->registrations->registration as $reg)
         $categories = $categories . " " . $reg->categoryName ;
-        $data [$k] = [$r->informationBase->siren,
+        $data [$j] = [$r->informationBase->siren,
           $r->informationBase->denomination, 
           $categories,
           strpos($categories,'AGA')?1:0
@@ -94,23 +95,24 @@ while ($k< count($intermediaries))
       }
       else
       {
-        $data [$k] = [$r->informationBase->siren,
+        $data [$j] = [$r->informationBase->siren,
         $r->informationBase->denomination, 
         $r->registrations->registration->categoryName,
         strpos($categories,'AGA')?1:0 ];
       }
-      $k++;
+      $j++;
     }
   } catch (Exception $e) {
     echo "<h2>Exception Error</h2>";
     echo $e->getMessage();
   }
+
   // output each row of the data
   foreach ($data as $row)
   {
     fputcsv($file, $row);
-    echo "Treatment ".$end ;
   }
+  $k = $k+1000;
   fclose($file);
   sleep(5);
 } 
