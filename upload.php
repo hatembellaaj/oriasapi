@@ -109,6 +109,7 @@ while ($k< count($intermediaries))
   foreach ($data as $row)
   {
     fputcsv($file, $row);
+    echo "Treatment ".$end ;
   }
   fclose($file);
   sleep(5);
