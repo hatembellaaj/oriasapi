@@ -49,17 +49,20 @@ header('Content-Disposition: attachment; filename="demo.csv"');
 // do not cache the file
 header('Pragma: no-cache');
 header('Expires: 0');
-// create a file pointer connected to the output stream
-$file = fopen('php://output', 'w');
-    
-// send the column headers
-fputcsv($file, array('sirene', 'denomination', 'categoryName', 'AGA'));
+
 
 
 //SLICING DATA
 $k=0;
 while ($k< count($intermediaries)) 
 {
+
+  // create a file pointer connected to the output stream
+  $file = fopen('php://output', 'w');
+      
+  // send the column headers
+  fputcsv($file, array('sirene', 'denomination', 'categoryName', 'AGA'));
+
   $wsdl   = 'https://ws.orias.fr/service?wsdl';
   $client = new SoapClient($wsdl, array('trace'=>1));  // The trace param will show you errors
   $user= 'WUU7EOCWD0GX9GHZX6Q5';
@@ -107,6 +110,7 @@ while ($k< count($intermediaries))
   {
     fputcsv($file, $row);
   }
+  fclose($file);
 } 
 exit();
 ?>
