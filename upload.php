@@ -114,7 +114,7 @@ while ($k< count($intermediaries))
   }
   $k = $k+1000;
   fclose($file);
-  sleep(5);
+  sleep(2);
 } 
 exit();
 ?>
