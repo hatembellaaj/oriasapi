@@ -58,7 +58,7 @@ while ($k< count($intermediaries))
 {
 
   // create a file pointer connected to the output stream
-  $file = fopen('php://output', 'w');
+  $file = fopen('php://output', 'a');
       
   // send the column headers
   fputcsv($file, array('sirene', 'denomination', 'categoryName', 'AGA'));
