@@ -50,7 +50,7 @@ header('Content-Disposition: attachment; filename="demo.csv"');
 header('Pragma: no-cache');
 header('Expires: 0');
 // create a file pointer connected to the output stream
-$file = fopen('php://output', 'w+');
+$file = fopen('php://output', 'w');
     
 // send the column headers
 fputcsv($file, array('sirene', 'denomination', 'categoryName', 'AGA'));
